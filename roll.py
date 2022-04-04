@@ -10,8 +10,8 @@ class Roll:
         self.__current_kept_dice.clear()
         for i in range(5):
             dice = Dice()
-            dice.roll_dice(6)
-            value = dice.get_value()
+            dice.roll_dice()
+            value = dice.get_dice_sideup()
             self.__current_dice_list.append(value)
         print(f'You rolled: {self.__current_dice_list}')
 
@@ -37,8 +37,8 @@ class Roll:
         rerolled = []
         for count in range(len(dice_list)):
             dice = Dice()
-            dice.roll_dice(6)
-            value = dice.get_value()
+            dice.roll_dice()
+            value = dice.get_dice_sideup()
             rerolled.append(value)
         self.__current_dice_list = rerolled
         print(f'You rolled: {self.__current_dice_list}')
