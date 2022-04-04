@@ -1,7 +1,7 @@
 class Person:
     def __init__(self, name, age):
-        self.__name = name;
-        self.__age = age;
+        self.__name = name
+        self.__age = age
 
     def set_name(self, name):
         self.__name = name
@@ -14,3 +14,6 @@ class Person:
 
     def get_age(self):
         return self.__age
+
+    def __str__(self):
+        return f'Name: {self.__name}, Age: {self.__age}'
