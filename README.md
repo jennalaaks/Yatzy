@@ -1,2 +1,3 @@
 # Yatzy
- Yatzy dice game. Exercise for OOP course.
+
+Yatzy dice game. Exercise for OOP course.
