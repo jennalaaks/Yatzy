@@ -13,19 +13,37 @@ class Roll:
             dice.roll_dice()
             value = dice.get_dice_sideup()
             self.__current_dice_list.append(value)
-        print(f'You rolled: {self.__current_dice_list}')
+        return self.__current_dice_list
 
     def keep_dice(self):
-        keep = input('Which dice you want to keep? (separated by comma): ')
-        split = keep.split(',')
-
-        if keep == '':
-            return self.__current_dice_list
-
-        split_int = [int(item) for item in split]
+        while True: 
+            try:
+                keep = input('Which dice you want to keep? (separated by comma): ')
+                split = keep.split(',')
+                if keep == '':
+                    return self.__current_dice_list
+            
+                split_int = [int(item) for item in split]
+                for i in split_int:
+                    if i == int:
+                        split_int.append(int(i))
+                break        
+            except ValueError:
+                print("Please enter only integers separated by comma")
+            
+        kept_list = []
 
         for dice in split_int:
-            self.__current_kept_dice.append(dice)
+            kept_list.append(dice)
+
+        for dice in kept_list:
+            kept_dice = kept_list.count(dice)
+            dices = self.__current_dice_list.count(dice)
+            if kept_dice > dices:
+                for i in range(kept_dice - dices):
+                    kept_list.remove(dice)
+            
+        self.__current_kept_dice += kept_list
 
         for value in split_int:
             if value in self.__current_dice_list:
@@ -41,7 +59,7 @@ class Roll:
             value = dice.get_dice_sideup()
             rerolled.append(value)
         self.__current_dice_list = rerolled
-        print(f'You rolled: {self.__current_dice_list}')
+        return self.__current_dice_list
 
         return self.__current_dice_list
 
@@ -54,7 +72,6 @@ class Roll:
     def forced_keep(self, dice_list):
         for dice in dice_list:
             self.__current_kept_dice.append(dice)
-
 
     def check_ones(self, dice_list):
         ones = 0
@@ -98,32 +115,81 @@ class Roll:
                 sixes += 6
         return sixes
     
-
     def check_one_pair(self, dice_list):
-        pass
+        dice_list.sort()
+        sum = 0
+        for dice in dice_list:
+            if dice_list.count(dice) >= 2:
+                sum = dice * 2
+        return sum
 
     def check_two_pairs(self, dice_list):
-        pass
+        dice_list.sort()
+        if (dice_list[0] == dice_list[1] and dice_list[2] == dice_list[3]):
+            return dice_list[0] + dice_list[1] + dice_list[2] + dice_list[3]
+        if (dice_list[0] == dice_list[1] and dice_list[3] == dice_list[4]):
+            return dice_list[0] + dice_list[1] +  dice_list[3] + dice_list[4]
+        if (dice_list[1] == dice_list[2] and dice_list[3] == dice_list[4]):
+            return dice_list[1] + dice_list[2] + dice_list[3] + dice_list[4]
 
     def check_three_kind(self, dice_list):
-        pass
+        dice_list.sort()
+        dice = dice_list[2]
+        if dice_list[0] == dice_list[2] or dice_list[1] == dice_list[3] or dice_list[2] == dice_list[4]:
+            return dice * 3
+        else:
+            print("It was not Three of a kind")
+            return 0
 
     def check_four_kind(self, dice_list):
-        pass
+        dice_list.sort()
+        dice = dice_list[2]
+        if dice_list[0] == dice_list[3] or dice_list[1] == dice_list[4]:
+            return dice * 4
+        else:
+            print("It was not Full House")
+            return 0
+            
+    def check_full_house(self,dice_list):
+        dice_list.sort()
+        fullhouse = 0
+        if (len(set(dice_list))) != 2:
+            print('It was not Full House')
+            return 0
 
+        elif (dice_list[0] != dice_list[3]) or (dice_list[1] != dice_list[4]):
+            for dice in dice_list:
+                fullhouse += dice
+            return fullhouse
+            
     def check_low_straight(self, dice_list):
-        pass
+        dice_list.sort()
+        if len(set(dice_list)) == 5 and dice_list[0] == 1 and dice_list[4] == 5:
+            return 15
+        else:
+            print("It was not Low straight")
+            return 0
 
     def check_high_straight(self, dice_list):
-        pass
-
-    def check_full_house(self,dice_list):
-        pass
-
-    def add_chance(self, dice_list):
-        pass
+        dice_list.sort()
+        if len(set(dice_list)) == 5 and dice_list[0] == 2 and dice_list[4] == 6:
+            return 20
+        else:
+            print("It was not High straight")
+            return 0
+        
+    def check_chance(self, dice_list):
+        sum = 0
+        for dice in dice_list:
+            sum += dice
+        return sum
 
     def check_yatzy(self, dice_list):
-        if len(set(dice_list)) == 1:
-            return True
-        return False
+        yatzy = all(element == dice_list[0] for element in dice_list)
+        if (yatzy):
+            return 50
+        else: 
+            print('It was not Yatzy')
+            return 0
+
+       

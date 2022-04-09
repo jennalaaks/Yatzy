@@ -15,15 +15,25 @@ class Player(Person):
             "Fours": '',
             "Fives": '',
             "Sixes": '',
-            "Top score": 0,
-            "Top bonus": '' 
+            "TOP SCORE": 0,
+            "TOP BONUS": '',
+            "One pair": '',
+            "Two pairs": '',
+            "Three of a kind": '',
+            "Four of a kind": '',
+            "Full house": '',
+            "Low straight": '',
+            "High straight": '',
+            "Chance": '',
+            "Yatzy": '',
+            "BOTTOM SCORE": 0,
+            "TOTAL SCORE": ''
         }
-        
+
         # Scores
         self.__top_score = 0
         self.__top_bonus = 0
         self.__bottom_score = 0
-        self.__bonus_bottom = 0
         self.__total_score = 0
 
     def set_id(self, id):
@@ -38,7 +48,7 @@ class Player(Person):
 
     # Method adding a rolled score to the top part score.
     def add_top_score(self, value):
-        self.__scoreboard["Top score"] += value
+        self.__scoreboard["TOP SCORE"] += value
         self.__top_score += value
 
     # Print player scoreborad.
@@ -48,18 +58,25 @@ class Player(Person):
         print("-" *20)
         for key, value in self.__scoreboard.items():
             print (f'{key}: {value}')
+        print("-" *20)
 
-    # Check if player get bonus points from upstair.
+    # Check if player gets bonus points from upper section
     def add_top_bonus(self):
-        needed_score_to_bonus = 63
-
-        if self.get_top_score() >= needed_score_to_bonus:
-            self.__scoreboard["Top bonus"] = 50
-
+        if self.get_top_score() >= 63:
+            self.__scoreboard["TOP BONUS"] = 50
         else:
-            self.__scoreboard["Top bonus"] = 0
+            self.__scoreboard["TOP BONUS"] = 0
 
-        self.__top_bonus = self.__scoreboard["Top bonus"]
+        self.__top_bonus = self.__scoreboard["TOP BONUS"]
+
+    def add_bottom_score(self, value):
+        self.__scoreboard["BOTTOM SCORE"] += value
+        self.__bottom_score += value
+
+    def set_total_score(self):
+        total_points = self.__top_bonus + self.__top_score + self.__bottom_score
+        self.__total_score = total_points
+        self.__scoreboard["TOTAL SCORE"] = total_points
 
     def get_top_score(self):
         return self.__top_score
@@ -67,6 +84,12 @@ class Player(Person):
     def get_top_bonus(self):
         return self.__top_bonus
 
+    def get_bottom_score(self):
+        return self.__bottom_score
+
+    def get_total_score(self):
+        return self.__total_score
+    
     def get_id(self):
         return self.__id
 
