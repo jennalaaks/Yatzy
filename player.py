@@ -1,3 +1,7 @@
+# Filename      player.py
+# Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
+# Description:  Players infromtion, scoreboard, checks if player gets bonus points and counts total score
+
 from person import Person #Roll
 from roll import Roll
 
@@ -69,10 +73,12 @@ class Player(Person):
 
         self.__top_bonus = self.__scoreboard["TOP BONUS"]
 
+    # Method adding a rolled score to the bottom part score.
     def add_bottom_score(self, value):
         self.__scoreboard["BOTTOM SCORE"] += value
         self.__bottom_score += value
 
+    # Calculates all scores toghether
     def set_total_score(self):
         total_points = self.__top_bonus + self.__top_score + self.__bottom_score
         self.__total_score = total_points

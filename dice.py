@@ -1,3 +1,7 @@
+# Filename      dice.py
+# Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
+# Description:  Rolling dice
+
 import random
 
 class Dice:

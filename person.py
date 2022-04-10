@@ -1,3 +1,7 @@
+# Filename      person.py
+# Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
+# Description:  Setting persons infromation that are going to play the game
+
 class Person:
     def __init__(self, name, age):
         self.__name = name

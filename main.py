@@ -1,6 +1,6 @@
-# Filename      dice.py
+# Filename      main.py
 # Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
-# Description:  
+# Description:  Instruction, playing the game, player choose where to put dices and defining the winner.
 
 # Import classes
 from dice import Dice # Dice

@@ -1,3 +1,7 @@
+# Filename      roll.py
+# Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
+# Description:  Rolls the dices, which dices are going to be kept and which rolled again. Counts points and checks ...
+
 from dice import Dice
 
 class Roll:
@@ -5,6 +9,7 @@ class Roll:
         self.__current_dice_list = []
         self.__current_kept_dice = []
 
+    # Rolls five dicces at onece
     def roll_five_times(self):
         self.__current_dice_list.clear()
         self.__current_kept_dice.clear()
@@ -50,6 +55,7 @@ class Roll:
                 self.__current_dice_list.remove(value)
 
         return self.__current_dice_list
+
 
     def reroll_dice(self, dice_list):
         rerolled = []
