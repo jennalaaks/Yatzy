@@ -29,7 +29,11 @@ def game(player_list):
 
     dice = Roll() # Rolls the dices
     
+<<<<<<< HEAD
     # 15 rounds
+=======
+    # 15 rounds for each player.
+>>>>>>> 33ac2aee8e909cd69668c41f77d34b602d5f1e6a
     for i in range(15):
         for player in player_list:
             
@@ -54,6 +58,26 @@ def game(player_list):
             print(f'Your final dices: {dice.get_kept_list()}')
             print()
 
+<<<<<<< HEAD
+=======
+            '''scores = {
+                'Ones' : 1,
+                'Twos' : 2,
+                'Threes' : 3,
+                'Fours' : 4,
+                'Fives' : 5,
+                'Sixes' : 6,
+                'One pair' : 7,
+                'Two pair' : 8,
+                'Three of a kind' : 9,
+                'Four of a kind' : 10,
+                'Full house' : 11,
+                'Low straight' : 12,
+                'High straight' : 13,
+                'Change' : 14,
+                'Yatzy' : 15
+            }'''
+>>>>>>> 33ac2aee8e909cd69668c41f77d34b602d5f1e6a
 
             while True:
                 try:
@@ -62,18 +86,29 @@ def game(player_list):
                     "One pair = 7, Two pairs = 8, Three of a kind = 9, Four of a kind = 10, Full house = 11\n"
                     "Low straight = 12, High straight = 13, Chance = 14, Yatzy = 15: "))
                     
+<<<<<<< HEAD
                     # Here checks if the choosen combination on the scoreboard is empty, if it is then the score are added to the combination on the scoreboard.
                     # If user have already that combination, then the score will not be added.
                     if user == 1: 
                         if player.get_scoreboard()['Ones']: 
+=======
+                    if user == 1: 
+                        if player.get_scoreboard()['Ones']:  # If user have already ones, then scores will be not added.
+                            print('You already have ones.')
+
+                        else: # Check is scoreboard ones empty, if it is then scores add to scoreboard.
+>>>>>>> 33ac2aee8e909cd69668c41f77d34b602d5f1e6a
                             ones = dice.check_ones(dice.get_kept_list())
                             player.add_rolled("Ones", ones)
                             player.add_top_score(ones)
                             break
 
+<<<<<<< HEAD
                         else: 
                             print('You already have this.')
 
+=======
+>>>>>>> 33ac2aee8e909cd69668c41f77d34b602d5f1e6a
                     elif user == 2: 
                         twos = dice.check_twos(dice.get_kept_list())
                         player.add_rolled("Twos", twos)
