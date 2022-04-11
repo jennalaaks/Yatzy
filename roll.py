@@ -9,7 +9,7 @@ class Roll:
         self.__current_dice_list = []
         self.__current_kept_dice = []
 
-    # Rolls five dicces at onece
+    # Rolls the five dices at once
     def roll_five_times(self):
         self.__current_dice_list.clear()
         self.__current_kept_dice.clear()
@@ -20,6 +20,7 @@ class Roll:
             self.__current_dice_list.append(value)
         return self.__current_dice_list
 
+    # User chooses if she/he wants to keep dice or dices
     def keep_dice(self):
         while True: 
             try:
@@ -36,19 +37,20 @@ class Roll:
             except ValueError:
                 print("Please enter only integers separated by comma")
             
-        kept_list = []
-
+        kept_list = [] 
+        
+        # Kept dices added to a list
         for dice in split_int:
             kept_list.append(dice)
 
         for dice in kept_list:
-            kept_dice = kept_list.count(dice)
-            dices = self.__current_dice_list.count(dice)
-            if kept_dice > dices:
-                for i in range(kept_dice - dices):
-                    kept_list.remove(dice)
+            kept_dice = kept_list.count(dice) #Counts kept dices
+            dices = self.__current_dice_list.count(dice) #Counts current dices
+            if kept_dice > dices: #If kept dices are bigger current dices
+                for i in range(kept_dice - dices): #Removes kept dices from current dices?
+                    kept_list.remove(dice) #Removes dices in kept_list so the list is empty for next round
             
-        self.__current_kept_dice += kept_list
+        self.__current_kept_dice += kept_list # Adds current dices to kept_list
 
         for value in split_int:
             if value in self.__current_dice_list:
@@ -56,7 +58,7 @@ class Roll:
 
         return self.__current_dice_list
 
-
+    # Rolls all or the dices that are not kept again
     def reroll_dice(self, dice_list):
         rerolled = []
         for count in range(len(dice_list)):
@@ -67,17 +69,18 @@ class Roll:
         self.__current_dice_list = rerolled
         return self.__current_dice_list
 
-        return self.__current_dice_list
-
     def get_dice_list(self):
         return self.__current_dice_list
 
     def get_kept_list(self):
         return self.__current_kept_dice
     
+    # If player has not chosen to keep any dices before the last roll
     def forced_keep(self, dice_list):
         for dice in dice_list:
             self.__current_kept_dice.append(dice)
+
+    # HERE ARE ALL METHODS THAT CHECKS ALL DIFFERENT COMBINATIONS
 
     def check_ones(self, dice_list):
         ones = 0
@@ -197,5 +200,3 @@ class Roll:
         else: 
             print('It was not Yatzy')
             return 0
-
-       

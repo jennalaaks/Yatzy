@@ -3,10 +3,10 @@
 # Description:  Instruction, playing the game, player choose where to put dices and defining the winner.
 
 # Import classes
-from dice import Dice # Dice
 from roll import Roll # Roll
 from player import Player # Player
 
+# Read instructions 
 def choice():
     while True:
         try:
@@ -20,14 +20,16 @@ def choice():
         except ValueError:
             print("Integers only. Please answer 1 or 2.")
 
+# Displays players
 def game(player_list):
     print()
     print("Players:")
     for player in player_list:
         print(player)
 
-    dice = Roll()
+    dice = Roll() # Rolls the dices
     
+    # 15 rounds
     for i in range(15):
         for player in player_list:
             
@@ -51,22 +53,26 @@ def game(player_list):
 
             print(f'Your final dices: {dice.get_kept_list()}')
             print()
+
+
             while True:
                 try:
                     print("Where do you want to use your dices?")
                     user = int(input("Ones = 1, Twos = 2, Threes = 3, Fours = 4, Fives = 5, Sixes = 6\n"
                     "One pair = 7, Two pairs = 8, Three of a kind = 9, Four of a kind = 10, Full house = 11\n"
                     "Low straight = 12, High straight = 13, Chance = 14, Yatzy = 15: "))
-
+                    
+                    # Here checks if the choosen combination on the scoreboard is empty, if it is then the score are added to the combination on the scoreboard.
+                    # If user have already that combination, then the score will not be added.
                     if user == 1: 
-                        if player.get_scoreboard()['Ones']: # Check is scoreboard ones empty, if it is then scores add to scoreboard.
+                        if player.get_scoreboard()['Ones']: 
                             ones = dice.check_ones(dice.get_kept_list())
                             player.add_rolled("Ones", ones)
                             player.add_top_score(ones)
                             break
 
-                        else: # If user have already ones, then scores will be not added.
-                            print('You already have ones.')
+                        else: 
+                            print('You already have this.')
 
                     elif user == 2: 
                         twos = dice.check_twos(dice.get_kept_list())
@@ -165,12 +171,13 @@ def game(player_list):
     for player in player_list:
         player.print_scoreboard()
 
+# Defining the winner
 def winner(player_list):
     total_points = 0
     winner = ''
-    for player in player_list:
-        if player.get_total_score() > total_points:
-            total_points = player.get_total_score()
+    for player in player_list: #Compares players points from list
+        if player.get_total_score() > total_points: #If players points bigger than 0
+            total_points = player.get_total_score() #Players points saved into total_points
             winner = player.get_name()
         print(f"{player.get_name()}'s total score:",total_points)
 
