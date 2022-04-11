@@ -3,7 +3,6 @@
 # Description:  Players infromtion, scoreboard, checks if player gets bonus points and counts total score
 
 from person import Person # Person
-from roll import Roll # Roll
 
 class Player(Person):
     def __init__(self, name, age, username, id):
