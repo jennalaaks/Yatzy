@@ -59,10 +59,14 @@ def game(player_list):
                     "Low straight = 12, High straight = 13, Chance = 14, Yatzy = 15: "))
 
                     if user == 1: 
-                        ones = dice.check_ones(dice.get_kept_list())
-                        player.add_rolled("Ones", ones)
-                        player.add_top_score(ones)
-                        break
+                        if player.get_scoreboard()['Ones']: # Check is scoreboard ones empty, if it is then scores add to scoreboard.
+                            ones = dice.check_ones(dice.get_kept_list())
+                            player.add_rolled("Ones", ones)
+                            player.add_top_score(ones)
+                            break
+
+                        else: # If user have already ones, then scores will be not added.
+                            print('You already have ones.')
 
                     elif user == 2: 
                         twos = dice.check_twos(dice.get_kept_list())

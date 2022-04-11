@@ -2,8 +2,8 @@
 # Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
 # Description:  Players infromtion, scoreboard, checks if player gets bonus points and counts total score
 
-from person import Person #Roll
-from roll import Roll
+from person import Person # Person
+from roll import Roll # Roll
 
 class Player(Person):
     def __init__(self, name, age, username, id):
@@ -63,6 +63,10 @@ class Player(Person):
         for key, value in self.__scoreboard.items():
             print (f'{key}: {value}')
         print("-" *20)
+
+    # Get player scoreboard.
+    def get_scoreboard(self):
+        return self.__scoreboard
 
     # Check if player gets bonus points from upper section
     def add_top_bonus(self):
