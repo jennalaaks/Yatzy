@@ -51,13 +51,32 @@ def game(player_list):
 
             print(f'Your final dices: {dice.get_kept_list()}')
             print()
+
+            '''scores = {
+                'Ones' : 1,
+                'Twos' : 2,
+                'Threes' : 3,
+                'Fours' : 4,
+                'Fives' : 5,
+                'Sixes' : 6,
+                'One pair' : 7,
+                'Two pair' : 8,
+                'Three of a kind' : 9,
+                'Four of a kind' : 10,
+                'Full house' : 11,
+                'Low straight' : 12,
+                'High straight' : 13,
+                'Change' : 14,
+                'Yatzy' : 15
+            }'''
+
             while True:
                 try:
                     print("Where do you want to use your dices?")
                     user = int(input("Ones = 1, Twos = 2, Threes = 3, Fours = 4, Fives = 5, Sixes = 6\n"
                     "One pair = 7, Two pairs = 8, Three of a kind = 9, Four of a kind = 10, Full house = 11\n"
                     "Low straight = 12, High straight = 13, Chance = 14, Yatzy = 15: "))
-
+                    
                     if user == 1: 
                         if player.get_scoreboard()['Ones']:  # If user have already ones, then scores will be not added.
                             print('You already have ones.')
