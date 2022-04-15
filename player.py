@@ -1,6 +1,6 @@
 # Filename      player.py
 # Authors:      Jenna Laaksovirta, Karolina Mäkinen ja Sanna Salminen
-# Description:  Players infromtion, scoreboard, checks if player gets bonus points and counts total score
+# Description:  Players infromtion, scoreboard, checks if player gets bonus points and counts total score.
 
 from person import Person # Person
 
