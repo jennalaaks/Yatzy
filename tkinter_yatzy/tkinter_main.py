@@ -122,28 +122,33 @@ def game(player_list):
             
             def hold_dice1():
                 if dice1['bg'] == 'pink':
-                    dice1.configure(bg='white')
-                dice1.configure(bg='pink')
+                    dice1.configure(bg='lightgrey')
+                else:
+                    dice1.configure(bg='pink')
             
             def hold_dice2():
                 if dice2['bg'] == 'pink':
-                    dice2.configure(bg='white')
-                dice2.configure(bg='pink')
+                    dice2.configure(bg='lightgrey')
+                else:
+                    dice2.configure(bg='pink')
     
             def hold_dice3():
                 if dice3['bg'] == 'pink':
-                    dice3.configure(bg='white')
-                dice3.configure(bg="pink")
+                    dice3.configure(bg='lightgrey')
+                else:
+                    dice3.configure(bg="pink")
 
             def hold_dice4():
                 if dice4['bg'] == 'pink':
-                    dice4.configure(bg='white')
-                dice4.configure(bg="pink")
+                    dice4.configure(bg='lightgrey')
+                else:
+                    dice4.configure(bg="pink")
                 
             def hold_dice5():
                 if dice5['bg'] == 'pink':
-                    dice5.configure(bg='white')
-                dice5.configure(bg="pink")
+                    dice5.configure(bg='lightgrey')
+                else:
+                    dice5.configure(bg="pink")
                 
             #dice number buttons
             d1_button = Button(root, text="", command= hold_dice1)
@@ -240,126 +245,7 @@ def game(player_list):
             print('dice numbers: ', dice_numbers)
 
             print(root.counter)
-            """
-            while True:
-                try:
-                    print("Where do you want to use your dices?")
-                    user = int(input("Ones = 1, Twos = 2, Threes = 3, Fours = 4, Fives = 5, Sixes = 6\n"
-                    "One pair = 7, Two pairs = 8, Three of a kind = 9, Four of a kind = 10, Full house = 11\n"
-                    "Low straight = 12, High straight = 13, Chance = 14, Yatzy = 15: "))
 
-                    if user == 1: 
-                        ones = dice.check_ones(dice.get_kept_list())
-                        player.add_rolled("Ones", ones)
-                        player.add_top_score(ones)
-                        num = Label(root, text=ones)
-                        num.grid(row=1, column=player_list.index(player))
-                        
-                        
-                        break
-
-                    elif user == 2: 
-                        twos = dice.check_twos(dice.get_kept_list())
-                        player.add_rolled("Twos", twos)
-                        player.add_top_score(twos)
-                        
-                        break
-
-                    elif user == 3: 
-                        threes = dice.check_threes(dice.get_kept_list())
-                        player.add_rolled("Threes", threes)
-                        player.add_top_score(threes)
-                        break
-
-                    elif user == 4: 
-                        fours = dice.check_fours(dice.get_kept_list())
-                        player.add_rolled("Fours", fours)
-                        player.add_top_score(fours)
-                        break
-
-                    elif user == 5: 
-                        fives = dice.check_fives(dice.get_kept_list())
-                        player.add_rolled("Fives", fives)
-                        player.add_top_score(fives)
-                        break
-
-                    elif user == 6: 
-                        sixes = dice.check_sixes(dice.get_kept_list())
-                        player.add_rolled("Sixes", sixes)
-                        player.add_top_score(sixes)
-                        break
-
-                    elif user == 7: 
-                        one_pair = dice.check_one_pair(dice.get_kept_list())
-                        player.add_rolled("One pair", one_pair)
-                        player.add_bottom_score(one_pair)
-                        break
-
-                    elif user == 8: 
-                        two_pairs = dice.check_two_pairs(dice.get_kept_list())
-                        player.add_rolled("Two pairs", two_pairs)
-                        player.add_bottom_score(two_pairs)
-                        break
-
-                    elif user == 9:
-                        three_kind = dice.check_three_kind(dice.get_kept_list())
-                        player.add_rolled("Three of a kind", three_kind)
-                        player.add_bottom_score(three_kind)
-                        break
-
-                    elif user == 10:
-                        four_kind = dice.check_four_kind(dice.get_kept_list())
-                        player.add_rolled("Four of a kind", four_kind)
-                        player.add_bottom_score(four_kind)
-                        break
-
-                    elif user == 11: 
-                        full_house = dice.check_full_house(dice.get_kept_list())
-                        player.add_rolled("Full house", full_house)
-                        player.add_bottom_score(full_house)
-                        break
-
-                    elif user == 12:
-                        low_straight = dice.check_low_straight(dice.get_kept_list())
-                        player.add_rolled("Low straight", low_straight)
-                        player.add_bottom_score(low_straight)
-                        break
-
-                    elif user == 13:
-                        high_straight = dice.check_high_straight(dice.get_kept_list())
-                        player.add_rolled("High straight", high_straight)
-                        player.add_bottom_score(high_straight)
-                        break
-
-                    elif user == 14:
-                        chance = dice.check_chance(dice.get_kept_list())
-                        player.add_rolled("Chance", chance)
-                        player.add_bottom_score(chance)
-                        break
-                
-                    elif user == 15:
-                        yatzy = dice.check_yatzy(dice.get_kept_list())
-                        player.add_rolled("Yatzy", yatzy)
-                        player.add_bottom_score(yatzy)
-                        break
-
-                    else:
-                        print("Integers between 1 to 15")
-                   
-                except ValueError:
-                    print("Integers only. Please answer 1 - 15.")
-                """
-            
-            
-
-    """
-    player.add_top_bonus()
-    player.set_total_score()
-
-    print()
-    for player in player_list:
-        player.print_scoreboard()
-    """
 def winner(player_list):
     total_points = 0
     winner = ''
@@ -376,7 +262,9 @@ def main():
 
     print("Welcome to play Yatzy!")
 
-    while True:
+    player_list = [Player('Jespa', 3, 'jenspeliini12', 1), Player('Teppo', 56, 'teppo23', 2)]
+
+    '''while True:
         try:
             player_amount = int(input("How many players you want to have? (min = 2, max = 5): "))
             if player_amount >= 2 and player_amount <= 5:
@@ -396,7 +284,7 @@ def main():
         username = input(f'Player {i+1} user name: ')
         pl_id = int(input(f'Player {i+1} id: '))
 
-        player_list.append(Player(name, age, username, pl_id))
+        player_list.append(Player(name, age, username, pl_id))'''
 
     game(player_list)
 
