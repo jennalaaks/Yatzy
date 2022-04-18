@@ -66,8 +66,6 @@ def game(player_list):
         cell1 = Label(root, text= ones, bg='white', width=10, borderwidth=1, relief='raised')
         cell1.grid(row=1, column=player_list.index(player) +1)
         player.add_top_score(ones)
-        t2.configure(text=player.get_name()+ ' added points to Ones')
-     
         
     def place_twos():
         twos = dice.check_twos(dice_numbers)
@@ -150,9 +148,9 @@ def game(player_list):
         cell7 = Label(root, text= yatzy, bg='white', width=10, borderwidth=1, relief='raised')
         cell7.grid(row=17, column=player_list.index(player) +1)
         player.add_bottom_score(yatzy)
-
-    # creating scoreboard buttons and labels
-    Button(root, text='Ones', command= place_ones).grid(row=1, column=0, sticky='ew')
+    
+     # creating scoreboard buttons and labels
+    Button(root, text='Ones', command=place_ones).grid(row=1, column=0, sticky='ew')
     Button(root, text='Twos', command=place_twos).grid(row=2, column=0, sticky='ew')
     Button(root, text='Threes', command=place_threes).grid(row=3, column=0, sticky='ew')
     Button(root, text='Fours', command=place_fours).grid(row=4, column=0, sticky='ew')
@@ -171,6 +169,8 @@ def game(player_list):
     Button(root, text='Yatzy', command=place_yatzy).grid(row=17, column=0, sticky='ew')
     Label(root, text='BOTTOM SCORE', borderwidth=1, relief='raised').grid(row=18, column=0, pady=5,  sticky='ew')
     Label(root, text='TOTAL SCORE', borderwidth=1, relief='raised').grid(row=19, column=0, pady=5, sticky='ew')
+
+   
     # dice labels
     dice1 = Label(root, text="",font=("times", 50))
     dice2 = Label(root, text="",font=("times", 50))
@@ -217,113 +217,102 @@ def game(player_list):
     d4_button = Button(root, text="", command= hold_dice4)
     d5_button = Button(root, text="", command= hold_dice5)
 
+    #define list of dice unicodes
+    dice_codes = ['\u2680','\u2681','\u2682','\u2683','\u2684','\u2685']
+    # define dict with key as unicodes and value as number
+    numbers = {'\u2680':1,'\u2681':2,
+                '\u2682':3,'\u2683':4,
+                '\u2684':5,'\u2685':6 }
+
     
+       
+        
     def click():
+        root.counter += 1
+        for dice in dice_list:
+            if dice == dice1:
+                if dice['bg'] != 'pink':
+                    # roll dice randomly
+                    d1 = random.choice(dice_codes)
+                    # configure dice labels
+                    dice1.configure(text=d1)
+                    if d1 in numbers.keys():
+                        #return rolled dice number
+                        d1_number = numbers[d1]
+                     # configure dice number buttons
+                    d1_button.configure(text=d1_number)
+            if dice == dice2:
+                if dice['bg'] != 'pink':
+                    d2 = random.choice(dice_codes)
+                    dice2.configure(text=d2)
+                    if d2 in numbers.keys():
+                        d2_number = numbers[d2]
+                    d2_button.configure(text=d2_number)
+            if dice == dice3:
+                if dice['bg'] != 'pink':
+                    d3 = random.choice(dice_codes)
+                    dice3.configure(text=d3)
+                    if d3 in numbers.keys():
+                        d3_number = numbers[d3]
+                    d3_button.configure(text=d3_number)
+            if dice == dice4:
+                if dice['bg'] != 'pink':
+                    d4 = random.choice(dice_codes)
+                    dice4.configure(text=d4)
+                    if d4 in numbers.keys():
+                        d4_number = numbers[d4]
+                    d4_button.configure(text=d4_number)
+            if dice == dice5:
+                if dice['bg'] != 'pink':
+                    d5 = random.choice(dice_codes)
+                    dice5.configure(text=d5)
+                    if d5 in numbers.keys():
+                        d5_number = numbers[d5]
+                    d5_button.configure(text=d5_number)
+    
+            # after third roll the numbers are added to the dice_numbers list
+            if root.counter == 3:
+                btn.configure(state='disabled')
+                dice_numbers.append(numbers[dice['text']])
+                t2.configure(text=player.get_name() +" where do you want to use your dices?\nChoose from the scoreboard.")
+    
+        dice1.grid(row=13, rowspan=3, column=10)
+        dice2.grid(row=13, rowspan=3, column=11)
+        dice3.grid(row=13, rowspan=3, column=12)
+        dice4.grid(row=13, rowspan=3, column=13)
+        dice5.grid(row=13, rowspan=3, column=14)
 
-        def roll():
-            root.counter += 1
-            #define list of dice unicodes
-            dice_codes = ['\u2680','\u2681','\u2682','\u2683','\u2684','\u2685']
-            # define dict with key as unicodes and value as number
-            numbers = {'\u2680':1,'\u2681':2,
-                       '\u2682':3,'\u2683':4,
-                       '\u2684':5,'\u2685':6 }
-            for dice in dice_list:
-                if dice == dice1:
-                    if dice['bg'] != 'pink':
-                        # roll dice randomly
-                        d1 = random.choice(dice_codes)
-                        # configure dice labels
-                        dice1.configure(text=d1)
-                        if d1 in numbers.keys():
-                            #return rolled dice number
-                            d1_number = numbers[d1]
-                         # configure dice number buttons
-                        d1_button.configure(text=d1_number)
-                if dice == dice2:
-                    if dice['bg'] != 'pink':
-                        d2 = random.choice(dice_codes)
-                        dice2.configure(text=d2)
-                        if d2 in numbers.keys():
-                            d2_number = numbers[d2]
-                        d2_button.configure(text=d2_number)
-                if dice == dice3:
-                    if dice['bg'] != 'pink':
-                        d3 = random.choice(dice_codes)
-                        dice3.configure(text=d3)
-                        if d3 in numbers.keys():
-                            d3_number = numbers[d3]
-                        d3_button.configure(text=d3_number)
-                if dice == dice4:
-                    if dice['bg'] != 'pink':
-                        d4 = random.choice(dice_codes)
-                        dice4.configure(text=d4)
-                        if d4 in numbers.keys():
-                            d4_number = numbers[d4]
-                        d4_button.configure(text=d4_number)
-                if dice == dice5:
-                    if dice['bg'] != 'pink':
-                        d5 = random.choice(dice_codes)
-                        dice5.configure(text=d5)
-                        if d5 in numbers.keys():
-                            d5_number = numbers[d5]
-                        d5_button.configure(text=d5_number)
+        d1_button.grid(row=16, column=10)
+        d2_button.grid(row=16, column=11)
+        d3_button.grid(row=16, column=12)
+        d4_button.grid(row=16, column=13)
+        d5_button.grid(row=16, column=14)
 
-                # after third roll the numbers are added to the dice_numbers list
-                if root.counter == 3:
-                    btn.configure(state='disabled')
-                    dice_numbers.append(numbers[dice['text']])
-                    t2.configure(text=player.get_name() +" where do you want to use your dices?\nChoose from the scoreboard.")
-                    
-
-                dice1.grid(row=13, rowspan=3, column=10)
-                dice2.grid(row=13, rowspan=3, column=11)
-                dice3.grid(row=13, rowspan=3, column=12)
-                dice4.grid(row=13, rowspan=3, column=13)
-                dice5.grid(row=13, rowspan=3, column=14)
-
-                d1_button.grid(row=16, column=10)
-                d2_button.grid(row=16, column=11)
-                d3_button.grid(row=16, column=12)
-                d4_button.grid(row=16, column=13)
-                d5_button.grid(row=16, column=14)
-
-        btn = Button(root, width=20, height=2, bg='lightyellow', text="Roll Dice", command= roll)
-        btn.grid(row= 10, rowspan=3, column=10, columnspan=5)
-
-        
-        
-        btn.configure(state='normal')
+   
+    btn = Button(root, width=20, height=2, bg='lightyellow', text="Roll Dice", command= click)
+    btn.grid(row= 10, rowspan=3, column=10, columnspan=5)
 
     def change_dices():
         for die in dice_list:
             die.configure(bg='lightgrey')
-    
-    
-    
-   
+        btn.configure(state= 'normal')
 
     for i in range(15):
 
         for player in player_list:
-
             dice_numbers = []
             root.counter = 0
+            t2.configure(text = player.get_name() + ', your turn')
+
+
+            root.update()
 
             change_dices()
-
-            t2.configure(text=player.get_name() +", your turn")
-
-            click()
-
-            root.mainloop()
-            
-            print('Dice numbers: ', dice_numbers)
-
-            print(root.counter)
-   
+            root.update()
+         
+        
+    root.mainloop()  
     
-            
 
 def winner(player_list):
     total_points = 0
@@ -341,7 +330,9 @@ def main():
 
     print("Welcome to play Yatzy!")
 
-    player_list = [Player('Jespa', 3, 'jenspeliini12', 1), Player('Teppo', 56, 'teppo23', 2)]
+    player_list = [Player('Jespa', 3, 'jenspeliini12', 1),
+                   Player('Teppo', 56, 'teppo23', 2)]
+                   
 
     '''while True:
         try:
