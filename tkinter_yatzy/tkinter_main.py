@@ -180,8 +180,6 @@ def game(player_list):
 
     dice_list = [dice1, dice2, dice3, dice4, dice5]
 
-    dice_numbers = []
-
     def hold_dice1():
         if dice1['bg'] == 'pink':
             dice1.configure(bg='lightgrey')
@@ -220,9 +218,6 @@ def game(player_list):
     d5_button = Button(root, text="", command= hold_dice5)
 
     
-        
-        
-
     def click():
 
         def roll():
@@ -295,36 +290,38 @@ def game(player_list):
 
         btn = Button(root, width=20, height=2, bg='lightyellow', text="Roll Dice", command= roll)
         btn.grid(row= 10, rowspan=3, column=10, columnspan=5)
+
+        
         
         btn.configure(state='normal')
 
-    
-    
     def change_dices():
         for die in dice_list:
             die.configure(bg='lightgrey')
-
+    
+    
+    
    
 
     for i in range(15):
 
         for player in player_list:
 
+            dice_numbers = []
             root.counter = 0
+
+            change_dices()
 
             t2.configure(text=player.get_name() +", your turn")
 
             click()
 
-            change_dices()
-
+            root.mainloop()
+            
             print('Dice numbers: ', dice_numbers)
 
             print(root.counter)
-
-        root.mainloop()
-            
-            
+   
     
             
 
